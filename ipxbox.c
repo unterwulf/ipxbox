@@ -90,7 +90,7 @@ static void forward_packet_to_ipx(const char *buf, size_t sz)
     {
         .sll_family = AF_PACKET,
         .sll_ifindex = g_ipx_ifindex,
-        .sll_protocol = htons(g_frame_type),
+        .sll_protocol = htons(g_frame_types[g_frame_type].proto),
         .sll_halen = MAC_ADDR_SZ
     };
     struct iovec iov[] =
