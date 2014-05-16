@@ -30,7 +30,7 @@
 #define MAC_ADDR_SZ 6
 
 #define FRAME_TYPES_TABLE \
-    X(FRAME_802_3,       "802.3",      ETH_P_802_2 ) \
+    X(FRAME_802_3,       "802.3",      ETH_P_802_3 ) \
     X(FRAME_802_2,       "802.2",      ETH_P_802_2, 0xE0, 0xE0, 0x03 ) \
     X(FRAME_802_2_SNAP,  "802.2SNAP",  ETH_P_802_2, 0xAA, 0xAA, 0x03, 0, 0, 0, 0x81, 0x37 ) \
     X(FRAME_ETHERNET_II, "EthernetII", ETH_P_IPX )
