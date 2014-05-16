@@ -23,6 +23,7 @@
 #include "log.h"
 
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
+#define MAX(a, b) ((a) >= (b) ? (a) : (b))
 
 #define DEFAULT_UDP_PORT 213
 #define IPX_BUF_SZ 65536
@@ -352,7 +353,7 @@ int main(int argc, char **argv)
     g_ipx_ifindex = get_if_index(argv[1]);
     init_client_node(g_ipx_sock, argv[1]);
 
-    int nfds = g_ipx_sock > g_udp_sock ? g_ipx_sock + 1 : g_udp_sock + 1;
+    int nfds = MAX(g_ipx_sock, g_udp_sock) + 1;
 
     for (;;)
     {
