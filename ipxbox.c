@@ -168,11 +168,11 @@ static int is_dosbox_registration_request(const struct ipx_hdr *hdr)
     const char nullnode[IPX_NODE_SZ] = { 0 };
 
     return hdr->transport_control == 0
-           && hdr->pkt_len == htons(30)
+           && hdr->pkt_len == htons(IPX_HDR_SZ)
            && hdr->src_addr.net == 0
            && hdr->dst_addr.net == 0
-           && hdr->src_addr.sock == htons(2)
-           && hdr->dst_addr.sock == htons(2)
+           && hdr->src_addr.sock == htons(IPX_SOCK_ECHO)
+           && hdr->dst_addr.sock == htons(IPX_SOCK_ECHO)
            && !memcmp(&hdr->src_addr.node, nullnode, sizeof(nullnode))
            && !memcmp(&hdr->dst_addr.node, nullnode, sizeof(nullnode));
 }
@@ -182,11 +182,11 @@ static void send_dosbox_registration_response(void)
     struct ipx_hdr hdr =
     {
         .chksum = 0xFFFF,
-        .pkt_len = htons(30),
+        .pkt_len = htons(IPX_HDR_SZ),
         .transport_control = 0,
-        .pkt_type = 2,
-        .dst_addr = { .node = g_client_node, .sock = htons(2) },
-        .src_addr = { .node = g_my_node,     .sock = htons(2) }
+        .pkt_type = IPX_PKT_TYPE_ECHO,
+        .dst_addr = { .node = g_client_node, .sock = htons(IPX_SOCK_ECHO) },
+        .src_addr = { .node = g_my_node,     .sock = htons(IPX_SOCK_ECHO) }
     };
 
     if (sizeof(hdr) != sendto(g_udp_sock, &hdr, sizeof(hdr), 0,

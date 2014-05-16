@@ -9,7 +9,10 @@
 
 #include <stdint.h>
 
-#define IPX_NODE_SZ 6
+#define IPX_HDR_SZ        30
+#define IPX_NODE_SZ       6
+#define IPX_PKT_TYPE_ECHO 0x02
+#define IPX_SOCK_ECHO     0x0002
 
 union ipx_node
 {
