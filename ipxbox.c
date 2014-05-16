@@ -65,7 +65,7 @@ static int g_udp_sock;
 static int g_udp_port = DEFAULT_UDP_PORT;
 static unsigned int g_ipx_ifindex;
 static int g_is_client_registered;
-static int g_frame_type = FRAME_802_2_SNAP;
+static int g_frame_type = FRAME_802_2;
 
 static const char *g_extra_hdr;
 static size_t g_extra_hdr_sz;
@@ -287,7 +287,7 @@ static enum frame_type_id parse_frame_type(const char *str)
     }
 
     exit(EXIT_FAILURE);
-    return FRAME_802_2_SNAP;
+    return FRAME_802_2;
 }
 
 static int get_ipx_udp_port(void)
