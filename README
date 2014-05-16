@@ -1,0 +1,49 @@
+ipxbox
+======
+
+Copyright (c) 2014 Vitaly Sinilin <vs@kp4.ru>
+
+Published under the terms of the MIT License.
+
+ipxbox is a userspace tool that allows user to connect a vanilla
+DOSBox to real IPX hosts available in the L2 network. Surprisingly
+DOSBox cannot do that on its own. Although there is a Native IPX
+patch [1,2] available on the Internet, it is not really convenient to
+use it since for some reason it still has not been included into
+the DOSBox upstream.
+
+How it works
+============
+
+For DOSBox ipxbox looks just like another instance of DOSBox running
+on the same host. But instead of using a convention described in
+rfc1234 [3] ipxbox assigns its client (real DOSBox) with an IPX
+address based on the MAC address of the interface connected to L2
+IPX network (not on client's IP address).
+
+Once client is registered ipxbox starts decapsulating and forwarding
+incoming IPX over UDP packets from the client to the L2 network via
+a packet socket and encapsulating to UDP and forwarding to the client
+incoming bare IPX packets (broadcast and unicast).
+
+ipxbox listens to UDP port of the ipx service (213).
+
+Usage
+=====
+
+Since a privileged port and a packet socket is used ipxbox needs to
+be run as superuser (beware of backdoors!):
+
+    sudo ./ipxbox eth0
+
+An IPX client in DOSBox needs to be started as per [4]:
+
+    ipxnet connect 127.0.0.1
+
+Links
+=====
+
+[1] http://home.arcor.de/h-a-l-9000/dbdl.html
+[2] http://ykhwong.x-y.net
+[3] https://tools.ietf.org/html/rfc1234
+[4] http://www.dosbox.com/wiki/Ipxnet
