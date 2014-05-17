@@ -26,8 +26,9 @@
 #define MAX(a, b) ((a) >= (b) ? (a) : (b))
 
 #define DEFAULT_UDP_PORT 213
-#define IPX_BUF_SZ 65536
-#define UDP_BUF_SZ 65536
+#define IPX_MTU    576
+#define IPX_BUF_SZ (IPX_MTU + 8) /* 8 bytes reserved for LLC and SNAP headers */
+#define UDP_BUF_SZ IPX_MTU       /* as per rfc1234 */
 #define MAC_ADDR_SZ 6
 
 #define FRAME_TYPES_TABLE \
