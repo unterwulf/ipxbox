@@ -21,10 +21,10 @@ rfc1234 [3] ipxbox assigns its client (real DOSBox) with an IPX
 address based on the MAC address of the interface connected to L2
 IPX network (not on client's IP address).
 
-Once client is registered ipxbox starts decapsulating and forwarding
+Once a client is registered ipxbox starts decapsulating and forwarding
 incoming IPX over UDP packets from the client to the L2 network via
 a packet socket and encapsulating to UDP and forwarding to the client
-incoming bare IPX packets (broadcast and unicast).
+incoming broadcast and unicast bare IPX packets.
 
 ipxbox listens to UDP port of the ipx service (213).
 
